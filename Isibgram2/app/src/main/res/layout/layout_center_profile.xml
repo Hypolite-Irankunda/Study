@@ -68,11 +68,11 @@
                 android:layout_marginBottom="50dp">
 
                 <ListView
+                    android:id="@+id/listView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:horizontalSpacing="1dp"
-                    android:verticalSpacing="1dp"
-                    android:id="@+id/listView">
+                    android:verticalSpacing="1dp">
 
 
                 </ListView>

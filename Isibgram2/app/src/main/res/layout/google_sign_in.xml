@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/isibgramLogo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.MainActivity">
@@ -34,6 +35,28 @@
         android:text="Sign in"
         android:textColor="#090909"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/signInError"
+        android:layout_width="212dp"
+        android:layout_height="101dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginBottom="217dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="335dp"
+        android:layout_height="217dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="1dp"
+        app:srcCompat="@mipmap/ic_isibgramlogo2" />
 
   </RelativeLayout>
 

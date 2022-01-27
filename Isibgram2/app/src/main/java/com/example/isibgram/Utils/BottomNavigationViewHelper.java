@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
+import com.example.isibgram.Main.HomeActivity;
 import com.example.isibgram.Main.MainActivity;
 import com.example.isibgram.Profile.ProfileActivity;
 import com.example.isibgram.R;
@@ -34,7 +35,7 @@ public class BottomNavigationViewHelper {
                 switch (item.getItemId()){
 
                     case R.id.ic_house:
-                        Intent intent1 = new Intent(context, MainActivity.class);
+                        Intent intent1 = new Intent(context, HomeActivity.class);
                         context.startActivity(intent1);
                         break;
 

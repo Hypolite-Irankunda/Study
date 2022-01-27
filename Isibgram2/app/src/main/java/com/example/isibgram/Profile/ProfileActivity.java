@@ -14,11 +14,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.isibgram.DAO.DAOUser;
 import com.example.isibgram.Main.MainActivity;
 import com.example.isibgram.R;
+import com.example.isibgram.User.User;
 import com.example.isibgram.Utils.BottomNavigationViewHelper;
 import com.example.isibgram.Utils.UniversalImageLoader;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,6 +31,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.lang.reflect.Array;
@@ -47,6 +55,9 @@ public class ProfileActivity extends AppCompatActivity {
     TextView profilePostsTextView;
     Button logOutBtn;
 
+    DAOUser daoUser;
+    User user;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,33 +69,41 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayList<String> profilePostsList= new ArrayList<String>();
         profilePostsList.add("foo");
         profilePostsList.add("bar");
-        profilePostsList.add("Merci pour tous bande de chlage");
-        profilePostsList.add("Zeubi zeubi");
+        profilePostsList.add("Merci pour ...");
 
         setupProfilePostGrid(profilePostsList);
 
-
+        setupBottomNavigationView();
 
         initImageLoader();
         setProfileImage();
 
-        name = findViewById(R.id.profileName);
-        email = findViewById(R.id.textViewEmail);
+
         logOutBtn = findViewById(R.id.buttonlogout);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
 
+        daoUser = new DAOUser();
+
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if(acct != null){
-            String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
+
+            try {
+                user = getUserData();
+            }catch (NumberFormatException e){
+
+                System.err.println(e);
+            }
+
 
             profilePostsTextView = findViewById(R.id.textViewPosts);
-            profilePostsTextView.setText("125");
+            profilePostsTextView.setText(user.getPosts().toString());
 
-            name.setText(personName);
-            email.setText(personEmail);
+            name = findViewById(R.id.profileName);
+            email = findViewById(R.id.textViewEmail);
+            name.setText(user.getName());
+            email.setText(user.getEmail());
 
         }
 
@@ -97,6 +116,20 @@ public class ProfileActivity extends AppCompatActivity {
 
         //setupBottomNavigationView();
         // setupProfileParams("Hypolite.Irankunda", "345");
+    }
+
+    private User getUserData(){
+
+        Intent intent = getIntent();
+
+
+        String name = intent.getStringExtra("nameUser");
+        String email = intent.getStringExtra("emailUser");
+        String posts = intent.getStringExtra("postsUser");
+        String matricule = intent.getStringExtra("matriculeUser");
+
+        User user = new User(name,"",email, Integer.parseInt(posts), matricule);
+        return user;
     }
 
     void signOut(){
@@ -135,6 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
         menuItem.setChecked(true);
 
     }
+
 
     private void setupProfileParams(String profileName, String Posts){
 

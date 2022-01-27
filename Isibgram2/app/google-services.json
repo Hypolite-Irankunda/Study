@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1087784909618",
+    "project_id": "isibgram-1643184797189",
+    "storage_bucket": "isibgram-1643184797189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087784909618:android:b6fe1bbbd327e3d7ddf52b",
+        "android_client_info": {
+          "package_name": "com.example.isibgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087784909618-62qevub66pv4lb32ai1gno47sq1c9oqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.isibgram",
+            "certificate_hash": "16874a5cfc49d35e9dc6cacd353eb5e596f82666"
+          }
+        },
+        {
+          "client_id": "1087784909618-pa8c5qvbvk8glnmc607jp67gde8ueo83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAba263TlidYVGjCL0bseD3q2vThvOLR8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087784909618-pa8c5qvbvk8glnmc607jp67gde8ueo83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
